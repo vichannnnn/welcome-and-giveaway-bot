@@ -13,6 +13,6 @@ jobs:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.SSHKEY }}
+          publickey: ${{ secrets.SSHKEY }}
           script: cd ${{ secrets.PROJECT_PATH }} && git pull
           MY_NAME: "Hima"
