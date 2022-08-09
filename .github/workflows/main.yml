@@ -1,11 +1,15 @@
 name: A workflow for my Hello World file
-on: push
+on: [push]
 jobs:
-  build:
-    name: Hello world action
-    runs-on: ubuntu-latest
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v1
-      - uses: ./action-a
+      - name: Push to server
+        uses: appleboy/ssh-action@master
         with:
-          MY_NAME: "Hima"
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: cd ${{ secrets.PROJECT_PATH }} && git pull
