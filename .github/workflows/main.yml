@@ -8,11 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Push to server
-        uses: appleboy/ssh-action@master
+        uses: vichannnnn/welcome-and-giveaway-bot/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
-          publickey: ${{ secrets.SSHKEY }}
+          key: ${{ secrets.SSHKEY }}
           script: cd ${{ secrets.PROJECT_PATH }} && git pull
-          MY_NAME: "Hima"
